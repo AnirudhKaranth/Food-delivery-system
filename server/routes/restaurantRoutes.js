@@ -1,5 +1,5 @@
 import express from  'express'
-import { getALLRestaurants, getRestaurantDetails, loginRestaurant, registerRestaurant } from '../controllers/restaurantController'
+import { getALLRestaurants, getRestaurantById, getRestaurantDetails, loginRestaurant, registerRestaurant } from '../controllers/restaurantController.js'
 
 const router = express.Router()
 
@@ -7,5 +7,6 @@ router.route("/signup").post(registerRestaurant)
 router.route("/login").post(loginRestaurant)
 router.route("/getAllRestaurants").get(getALLRestaurants)
 router.route("/getDetails/:Rid").get(getRestaurantDetails)
+router.route("/getOwner").get(getRestaurantById)
 
 export default router

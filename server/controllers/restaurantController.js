@@ -1,4 +1,4 @@
-import Restaurant from "../Models/Restaurant"
+import Restaurant from "../Models/Restaurant.js"
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 
@@ -105,9 +105,31 @@ export const getRestaurantDetails = async (req, res, next) => {
 
 }
 
+export const getRestaurantById = async(req, res, next)=>{
+    try {
+        const {userId} = req.user
+
+        const restaurant = await Restaurant.findOne({ where: { id:userId } })
+
+        if (!restaurant) {
+            return res.status(400).json({ msg: `Restaurant with id: ${userId} does not exist` })
+        }
+
+        restaurant.dataValues.password = null;
+
+        res.status(200).json({
+            restaurant
+        })
+
+
+    } catch (error) {
+        next(error)
+    }
+}
 
 //update restaurant details
 
 export const updateRestaurant = async(req, res, next)=>{
     const { Rid } = req.params;
 }
+

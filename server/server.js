@@ -8,7 +8,7 @@ import cors from 'cors'
 import restaurantRouter from './routes/restaurantRoutes.js'
 import userRouter from './routes/userRoutes.js'
 import foodRouter from './routes/foodRoutes.js'
-import reviewRouter from './routes/reviewRouter.js'
+import reviewRouter from './routes/reviewRoutes.js'
 
 const app = express()
 const port = process.env.PORT || 5000;

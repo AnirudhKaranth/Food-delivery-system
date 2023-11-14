@@ -1,5 +1,5 @@
-import Review from "../Models/Review";
-import User from "../Models/User";
+import Review from "../Models/Review.js";
+import User from "../Models/User.js";
 
 export const addReview = async (req, res, next) => {
     const { userId, userName } = req.user 
