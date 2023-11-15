@@ -11,7 +11,11 @@ const initialState = {
     token: token,
     user: user ? JSON.parse(user) : null,
     currentPerson:{},
-    foodItems:[]
+    foodItems:[],
+    restaurantDetails:{},
+    reviews:[],
+    foodItemDetail:{},
+    restaurants:[]
 };
 
 const AppContext = createContext()
@@ -202,6 +206,51 @@ const AppProvider = ({ children }) => {
         }
     }
 
+    const getFoodDetails = async(id)=>{
+        try {
+            const response = await authFetch.get(`/food/getFoodDetail/${id}`)
+
+            const {foodItem, reviews, restaurant} = response?.data
+
+            dispatch({
+                type:"GET_FOOD_DETAILS",
+                payload:{foodItem, reviews, restaurant}
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getALLRestaurants = async()=>{
+        try {
+            const response = await authFetch.get("/restaurant/getAllRestaurants")
+
+            const {restaurants} = response?.data
+
+            dispatch({
+                type:"GET_ALL_RESTAURANTS",
+                payload:restaurants
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getRestaurantDetails = async(id)=>{
+        try {
+            const response = await authFetch.get(`/restaurant/getRestaurantDetails/${id}`)
+
+            const {foodItems, reviews, restaurant} = response?.data
+
+            dispatch({
+                type:"GET_RESTAURANT_DETAILS",
+                payload:{foodItems, reviews, restaurant}
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <AppContext.Provider value={{
              ...state, 
@@ -213,6 +262,9 @@ const AppProvider = ({ children }) => {
              getOwnerById, 
              getAllFoodByCreaterId,
              addFoodItem,
+             getFoodDetails,
+             getALLRestaurants,
+             getRestaurantDetails
              }}
              >
             {children}

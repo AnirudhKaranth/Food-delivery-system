@@ -1,25 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAppContext } from '../context/appContext';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import RestaurantItem from '../components/RestaurantItem';
 
 const Home = () => {
-  const {logout} = useAppContext()
   const navigate = useNavigate();
+  const {restaurants, getALLRestaurants} = useAppContext()
 
-    const handlelogout = ()=>{
-      logout()
-      navigate("/")
-    }
+  
+
+  useEffect(() => {
+    getALLRestaurants()
+  
+   
+  }, [ restaurants, getALLRestaurants])
+  
   
   return (
+    <>
+    <Navbar/>
     <div className='h-screen flex flex-col items-center justify-between'>
-      <div className='flex items-end justify-end w-full p-5'>
-        <button  className='bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 cursor-pointer' onClick={handlelogout}>logout</button>
+      <div className='flex flex-col'>
+        <h3>Restaurants</h3>
+        <div>
+         {restaurants.map((item)=>(
+          <RestaurantItem key={item.id} item={item}/>
+         ))}
+        </div>
       </div>
-      <div className='text-8xl' style={{"height":"80%"}}>
-        HOME PAGE
-      </div>
+      <div></div>
     </div>
+    </>
   )
 }
 

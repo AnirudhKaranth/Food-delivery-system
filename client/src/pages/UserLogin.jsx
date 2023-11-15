@@ -31,9 +31,9 @@ const {login, signUp, user} = useAppContext()
   }
 
   useEffect(() => {
-    if (user) {
+    if (user && user.role==="customer") {
         setTimeout(() => {
-            navigate("/")
+            navigate("/home")
         }, 1000);
     }
 

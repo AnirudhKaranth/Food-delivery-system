@@ -1,6 +1,8 @@
 import Restaurant from "../Models/Restaurant.js"
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
+import Food from "../Models/Food.js"
+import Review from "../Models/Review.js"
 
 
 const createJWT = (user) => {
@@ -89,6 +91,9 @@ export const getRestaurantDetails = async (req, res, next) => {
     try {
 
         const restaurant = await Restaurant.findOne({ where: { id:Rid } })
+        const foodItems = await Food.findAll({where:{Rid:Rid}})
+        const reviews = await Review.findAll({where:{Rid:Rid, Fid:null}})
+
 
         if (!restaurant) {
             return res.status(400).json({ msg: `Restaurant with id: ${Rid} does not exist` })
@@ -97,7 +102,9 @@ export const getRestaurantDetails = async (req, res, next) => {
         restaurant.dataValues.password = null;
 
         res.status(200).json({
-            restaurant
+            restaurant,
+            foodItems,
+            reviews
         })
     } catch (error) {
         next(error)

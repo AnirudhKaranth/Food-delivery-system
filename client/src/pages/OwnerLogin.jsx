@@ -19,6 +19,7 @@ const OwnerLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
     if (isSignUp) {
       let Category = category.split(" ");
       setPhoto("hi")
@@ -63,6 +64,7 @@ const OwnerLogin = () => {
               <input
                 type="text"
                 name="name"
+                id="name"
                 placeholder="Enter the restaurant name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -75,6 +77,7 @@ const OwnerLogin = () => {
             <input
               type="email"
               name="email"
+              id="email"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -88,6 +91,7 @@ const OwnerLogin = () => {
                 <input
                   type="text"
                   name="phone"
+                  id="phone"
                   placeholder="Enter your phone number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
@@ -98,6 +102,7 @@ const OwnerLogin = () => {
                 <input
                   type="text"
                   name="location"
+                  id="location"
                   placeholder="Enter your location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
@@ -108,6 +113,7 @@ const OwnerLogin = () => {
                 <input
                   type="text"
                   name="description"
+                  id="description"
                   placeholder="Enter the description"
                   value={description}
                   onChange={(e) => setdescription(e.target.value)}
@@ -122,6 +128,7 @@ const OwnerLogin = () => {
                 <input
                   type="text"
                   name="category"
+                  id="category"
                   placeholder="Enter the categories "
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
@@ -137,10 +144,12 @@ const OwnerLogin = () => {
             <input
               type="password"
               name="password"
+              id="password"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              autoComplete="current-password"
             />
           </label>
 

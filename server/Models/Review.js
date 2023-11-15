@@ -38,7 +38,8 @@ const Review = sequelize.define('Review', {
         references:{
             model:Food,
             key: 'id'
-        }
+        },
+        allowNull:true
     },
     Rid:{
         type: DataTypes.UUID,
