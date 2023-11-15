@@ -10,7 +10,7 @@ const AddFoodItem = () => {
 
   const navigate = useNavigate()
 
-  const {addFoodItem, user} = useAppContext();
+  const {addFoodItem, user, getAllFoodByCreaterId} = useAppContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,6 +23,7 @@ const AddFoodItem = () => {
     }
 
     if(addFoodItem(foodItem)){
+      getAllFoodByCreaterId(user?._id)
       navigate(`/home/${user?._id}`)
     }else{
       alert("addfood failed")

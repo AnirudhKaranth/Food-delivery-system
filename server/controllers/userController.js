@@ -57,9 +57,7 @@ export const login = async (req, res, next) => {
             return res.status(400).json({ msg: "User does not exists" })
         }
 
-        const isPasswordCorrect = await bcrypt.compare(password, user.dataValues.password);
-
-        if (!isPasswordCorrect) {
+        if (password !==  user.dataValues.password) {
             return res.status(400).json({ msg: "Incorrect password" })
         } else {
             const token = createJWT(user);

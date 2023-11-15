@@ -4,7 +4,7 @@ import Review from '../Models/Review.js';
 
 
 export const addFood = async(req, res, next)=>{
-    const{name, description, price, category} = req.body
+    const{name, price, description,category} = req.body
     const { userId } = req.user
 
     try {

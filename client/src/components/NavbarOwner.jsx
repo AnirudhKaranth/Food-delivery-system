@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaSearch } from "react-icons/fa";
 import { GrAdd } from "react-icons/gr";
 import { useAppContext } from '../context/appContext'
@@ -9,6 +9,7 @@ const NavbarOwner = () => {
     const [isClicked, setIsClicked] = useState(false)
     const {user, logout, currentPerson} = useAppContext();
     const FirstLetterOfUser = user?.name?.split("")[0];
+    const navigate =useNavigate()
  
     const handleSearch = (e)=>{
 
@@ -25,9 +26,9 @@ const NavbarOwner = () => {
 
   return (
     <div className='h-20 w-full flex justify-evenly items-center relative shadow-sm'>
-        <div>
+        <Link to={`/home/${user?._id}`}>
             <img src="" alt="logo" />
-        </div>
+        </Link>
         <form className='w-3/5 h-12 rounded-3xl border-2 border-gray-200 flex justify-start pl-1' onSubmit={handleSearch} style={{ "backgroundColor": "#efefef" }}>
                 <button type='submit' className='p-1'><FaSearch fontSize={25} /></button>
                 <label className='w-full h-full'>

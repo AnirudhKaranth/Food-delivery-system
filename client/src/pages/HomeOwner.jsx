@@ -11,7 +11,7 @@ const HomeOwner = () => {
     useEffect(() => {
       getAllFoodByCreaterId(ownerId)
 
-    }, [ownerId, getAllFoodByCreaterId])
+    }, [])
     
 
 

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import FoodItemCard from './FoodItemCard';
 import { useParams } from 'react-router-dom';
 import { useAppContext } from '../context/appContext';
 import Navbar from './Navbar';
 
 const FoodDetail = () => {
-  const { user, reviews } = useAppContext();
+  const { user, reviews, foodItemDetail ,getFoodDetails} = useAppContext();
   const { foodId } = useParams()
   console.log(reviews)
 
@@ -13,17 +13,23 @@ const FoodDetail = () => {
     console.log('Order Now Clicked!');
   };
 
+  useEffect(() => {
+    getFoodDetails(foodId)
+  
+  
+  }, [])
+  
+
   return (
     <>
       <Navbar />
       <div className="p-4">
         <section className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">Food Item Details</h2>
+          <h2 className="text-2xl font-bold mb-4">{foodItemDetail?.name}</h2>
           <div className="bg-white p-4 rounded-md shadow-md m-4 border-2 border-gray-300">
-            <h3 className="text-lg font-semibold mb-2">gudbad</h3>
-            <p className="text-gray-600 mb-2">One of the best</p>
-            <p className="text-gray-700 mb-2">Rs 120</p>
-            <p className="text-blue-500 font-medium">ice-cream veg</p>
+            <p className="text-gray-700 mb-2">{foodItemDetail?.description}</p>
+            <p className="text-gray-700 mb-2">Rs {foodItemDetail?.price}</p>
+            <p className="text-blue-500 font-medium">{foodItemDetail?.category?.join(" ")}</p>
           </div>
         </section>
 

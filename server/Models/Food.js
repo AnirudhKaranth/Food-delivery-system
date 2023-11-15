@@ -13,7 +13,7 @@ const Food = sequelize.define('Food', {
         allowNull: false
     },
     description: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(5000),
 
     },
     price: {
