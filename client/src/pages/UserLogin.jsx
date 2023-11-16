@@ -95,7 +95,7 @@ const {login, signUp, user} = useAppContext()
   </form>
 
   </div>
-  <Link to="/auth-owner" className='mr-5 bg-blue-400 p-4'>login as owner</Link>
+  <Link to="/auth-owner" className='mr-5 bg-blue-400 p-3 absolute top-5 right-5 rounded-lg'>login as owner</Link>
   </div>
   )
 }

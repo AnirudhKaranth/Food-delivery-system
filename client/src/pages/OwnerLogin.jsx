@@ -167,7 +167,8 @@ const OwnerLogin = () => {
           </div>
         </form>
       </div>
-      <Link to="/auth-user" className='mr-5 bg-blue-400 p-4'>login as user</Link>
+      
+      <Link to="/auth-user" className='mr-5 bg-blue-400 p-3 absolute top-5 right-5 rounded-lg'>login as user</Link>
     </div>
   )
 }

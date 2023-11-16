@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaSearch } from "react-icons/fa";
 import { GrAdd } from "react-icons/gr";
 import { useAppContext } from '../context/appContext'
+import logo from '../assets/logopng.png'
 
 const NavbarOwner = () => {
     const [search, setSearch] = useState("")
@@ -27,7 +28,7 @@ const NavbarOwner = () => {
   return (
     <div className='h-20 w-full flex justify-evenly items-center relative shadow-sm'>
         <Link to={`/home/${user?._id}`}>
-            <img src="" alt="logo" />
+            <img src={logo} alt="logo" width={100}/>
         </Link>
         <form className='w-3/5 h-12 rounded-3xl border-2 border-gray-200 flex justify-start pl-1' onSubmit={handleSearch} style={{ "backgroundColor": "#efefef" }}>
                 <button type='submit' className='p-1'><FaSearch fontSize={25} /></button>
