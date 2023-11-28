@@ -12,7 +12,7 @@ const createJWT = (user) => {
 export const registerRestaurant = async (req, res, next) => {
     const { name, email, password, description, location, Category, photo, phone } = req.body
 console.log(photo)
-    if (!name || !email || !password || !description || !location || !Category || !phone) {
+    if (!name || !email || !password || !description || !location || !Category || !phone || !photo) {
         return res.status(400).json({ msg: "Please provide all values" })
     }
 

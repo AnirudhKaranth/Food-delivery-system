@@ -47,7 +47,7 @@ const OwnerLogin = () => {
   useEffect(() => {
     if (user) {
       setTimeout(() => {
-        navigate(`/home/${user._id}`)
+        navigate(`/home/${user.id}`)
       }, 1000);
     }
 
@@ -108,6 +108,10 @@ const OwnerLogin = () => {
                   onChange={(e) => setLocation(e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
                 />
+              </label>
+              
+              <label htmlFor="photo" className="block">
+                <FileBase64 type='file' multiple={false} onDone={({ base64 }) => setPhoto(base64)} />
               </label>
               <label htmlFor="description" className="block">
                 <input

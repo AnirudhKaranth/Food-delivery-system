@@ -27,6 +27,9 @@ const Food = sequelize.define('Food', {
             key: "id"
         }
     },
+    photo:{
+        type: DataTypes.TEXT('medium')
+    },
     category: {
         type: DataTypes.STRING,
         get() {

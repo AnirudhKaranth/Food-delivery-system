@@ -32,6 +32,7 @@ const RestaurantDetails = () => {
             <p className="text-gray-600 mb-2">Email: {restaurantDetails.email}</p>
             <p className="text-gray-600">Phone: {restaurantDetails.phone}</p>
           </div>
+         
 
         </div>
 

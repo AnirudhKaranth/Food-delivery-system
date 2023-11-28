@@ -36,7 +36,7 @@ const Restaurant = sequelize.define('Restaurant', {
         allowNull: false
      },
      photo:{
-       type: DataTypes.TEXT
+       type: DataTypes.TEXT('medium')
       },
       category:{
          type:DataTypes.STRING,

@@ -1,17 +1,21 @@
 import React, { useEffect } from 'react';
 import FoodItemCard from './FoodItemCard';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppContext } from '../context/appContext';
 import Navbar from './Navbar';
 
 const FoodDetail = () => {
   const { user, reviews, foodItemDetail ,getFoodDetails} = useAppContext();
   const { foodId } = useParams()
-  console.log(reviews)
+  const navigate = useNavigate();
 
   const handleOrderNow = () => {
     console.log('Order Now Clicked!');
   };
+
+  const handleReview = () =>{
+    navigate(`/addReview/${foodItemDetail.id}`)
+  }
 
   useEffect(() => {
     getFoodDetails(foodId)
@@ -36,9 +40,15 @@ const FoodDetail = () => {
        {user.role==="customer"&& <section>
           <button
             onClick={handleOrderNow}
-            className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+            className="bg-green-500 text-white px-4 py-2 mx-2 rounded-md hover:bg-green-600"
           >
             Order Now
+          </button>
+          <button
+            onClick={handleReview}
+            className="bg-green-500 text-white px-4 py-2 mx-2 rounded-md hover:bg-green-600"
+          >
+            Add Review
           </button>
         </section>}
         <section className="my-8">

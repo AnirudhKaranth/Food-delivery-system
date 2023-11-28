@@ -45,11 +45,11 @@ const AppProvider = ({ children }) => {
             const response = await authFetch.post('/user/signup', currentUser);
 
             let { user, token } = response.data;
-            user = {
-                name: user.name,
-                _id: user.id,
-                role: user.role
-            }
+            // user = {
+            //     name: user.name,
+            //     _id: user.id,
+            //     role: user.role
+            // }
 
             dispatch({
                 type: "REGISTER_USER_SUCCESS",
@@ -73,11 +73,11 @@ const AppProvider = ({ children }) => {
 
             let { user, token } = response?.data;
             console.log(user)
-            user = {
-                name: user.name,
-                _id: user.id,
-                role: user.role
-            }
+            // user = {
+            //     name: user.name,
+            //     _id: user.id,
+            //     role: user.role
+            // }
 
             dispatch({
                 type: "LOGIN_USER_SUCCESS",
@@ -107,11 +107,7 @@ const AppProvider = ({ children }) => {
 
             let { restaurant, token } = response.data
 
-            let user = {
-                name: restaurant.name,
-                _id: restaurant.id,
-                role: restaurant.role
-            }
+            let user = restaurant
 
             dispatch({
                 type: "REGISTER_USER_SUCCESS",
@@ -133,12 +129,8 @@ const AppProvider = ({ children }) => {
 
             let { restaurant, token } = response?.data;
 
-            let user = {
-                name: restaurant.name,
-                _id: restaurant.id,
-                role: restaurant.role
-            }
-
+          
+            let user = restaurant
             dispatch({
                 type: "LOGIN_USER_SUCCESS",
                 payload: { user, token }
@@ -175,10 +167,11 @@ const AppProvider = ({ children }) => {
 
     const getAllFoodByCreaterId = async(id)=>{
         try {
+            console.log("id: ", id)
             const response = await authFetch.get(`/food/getAllFoodById/${id}`)
 
             const {foodItems} = response?.data
-            
+            console.log(foodItems)
             dispatch({
                 type:"GET_ALL_FOOD_SUCCESS",
                 payload:foodItems
@@ -251,6 +244,37 @@ const AppProvider = ({ children }) => {
         }
     }
 
+    const addReview = async(reviewData)=>{
+        try {
+            const response = await authFetch.post("/review/addreview", reviewData,{
+                headers: {
+                    'Authorization': `Bearer ${state.token}`
+                }
+            })
+
+            const {review} = response?.data
+            alert("review added successfully!")
+            return true
+
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+    }
+
+    const getReviewsById = async(foodId)=>{
+        try {
+            const response = await authFetch.get(`/getreviews/${foodId}`)
+            const {reviews} = response?.data
+            dispatch({
+                type:"GET_REVIEW_BY_FOOD_ID",
+                payload:{reviews}
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <AppContext.Provider value={{
              ...state, 
@@ -264,7 +288,9 @@ const AppProvider = ({ children }) => {
              addFoodItem,
              getFoodDetails,
              getALLRestaurants,
-             getRestaurantDetails
+             getRestaurantDetails,
+             addReview,
+             getReviewsById
              }}
              >
             {children}

@@ -56,6 +56,11 @@ const reducer = (state, action) => {
           reviews: action.payload.reviews,
           foodItems: action.payload.foodItems
         }
+      case "GET_REVIEW_BY_FOOD_ID":
+        return{
+          ...state,
+          reviews: action.payload.reviews
+        }
     default:
       return state; // Return the current state for unsupported actions
   }

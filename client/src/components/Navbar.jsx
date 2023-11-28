@@ -8,10 +8,12 @@ import logo from '../assets/logopng.png'
 const Navbar = () => {
     const [search, setSearch] = useState("")
     const [isClicked, setIsClicked] = useState(false)
-    const {user, logout, currentPerson} = useAppContext();
+    const { user, logout } = useAppContext();
     const FirstLetterOfUser = user?.name?.split("")[0];
- 
-    const handleSearch = (e)=>{
+
+    console.log(user)
+
+    const handleSearch = (e) => {
 
     }
 
@@ -24,23 +26,26 @@ const Navbar = () => {
     }
 
 
-  return (
-    <div className='h-20 w-full flex justify-evenly items-center relative shadow-sm'>
-        <div>
-            <img src={logo} alt="logo" width={100}/>
-        </div>
-        <form className='w-3/5 h-12 rounded-3xl border-2 border-gray-200 flex justify-start pl-1' onSubmit={handleSearch} style={{ "backgroundColor": "#efefef" }}>
+    return (
+        <div className='h-20 w-full flex justify-evenly items-center relative shadow-sm'>
+            <Link to={user.role === 'owner' ? `/home/${user?._id}` : "/home"}>
+                <img src={logo} alt="logo" width={100} />
+            </Link>
+            <form className='w-3/5 h-12 rounded-3xl border-2 border-gray-200 flex justify-start pl-1' onSubmit={handleSearch} style={{ "backgroundColor": "#efefef" }}>
                 <button type='submit' className='p-1'><FaSearch fontSize={25} /></button>
                 <label className='w-full h-full'>
                     <input type="text" value={search} className='h-full w-full px-3 rounded-3xl outline-none' onChange={(e) => setSearch(e.target.value)} style={{ "backgroundColor": "#efefef" }} />
                 </label>
-        </form>
-        
-        <div onClick={toggleProfile} className='p-3 cursor-pointer'>
-                {currentPerson?.photo && currentPerson?.profile?.length !== 0 ?
+            </form>
+
+
+            {user.role==="owner " && <Link to='/addFood' className='p-3  sm:inline-block'><GrAdd fontSize={25} /></Link>}
+
+            <div onClick={toggleProfile} className='p-3 cursor-pointer'>
+                {user?.photo && user?.photo?.length !== 0 ?
                     <img
                         className="w-8 h-8 rounded-full object-cover"
-                        src={currentPerson?.profile}
+                        src={user?.photo}
                         alt="user-profile"
                     />
                     :
@@ -55,8 +60,8 @@ const Navbar = () => {
                 <div className="line"></div>
                 <button type='button' className='p-2 hover:bg-gray-300 rounded-b-lg' onClick={logoutUser}>Logout</button>
             </div>}
-    </div>
-  )
+        </div>
+    )
 }
 
 export default Navbar

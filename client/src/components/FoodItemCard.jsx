@@ -10,10 +10,16 @@ const FoodItemCard = ({foodItem}) => {
     navigate(`/foodDetails/${id}`)
   }
   return (
-    <div className="bg-white p-4  rounded-md shadow-md m-4 border-2 border-gray-300" style={{"width":"250px"}} onClick={handleClick}>
+    <div className="bg-white rounded-md shadow-sm hover:shadow-lg cursor-pointer m-4 border-2 border-gray-300" style={{"width":"250px"}} onClick={handleClick}>
+      <div style={{ "height":"50%"}}>
+        <img src={foodItem?.photo} alt="logo" className='rounded-t-lg' style={{ "height": "100%","width":"100%" }} />
+      </div>
+      <div className='p-2'>
       <h3 className="text-lg font-semibold mb-2">{foodItem.name}</h3>
       <p className="text-gray-700 mb-2">Rs {foodItem.price}</p>
       <p className="text-blue-500 font-medium">{category}</p>
+
+      </div>
     </div>
   );
 }

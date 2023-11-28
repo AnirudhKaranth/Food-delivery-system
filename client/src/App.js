@@ -8,6 +8,7 @@ import HomeOwner from "./pages/HomeOwner";
 import AddFoodItem from "./components/AddFoodItem.jsx";
 import FoodDetail from "./components/FoodDetail.jsx";
 import RestaurantDetails from "./pages/RestaurantDetails.jsx";
+import AddReview from "./pages/AddReview.jsx";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
       <Route path="/restaurantDetail/:restaurantId" element={<ProtectedRoute> <RestaurantDetails/></ProtectedRoute> }/>
       <Route path="/auth-user" element={<UserLogin/>}/>
       <Route path="/auth-owner" element={<OwnerLogin/>}/>
+      <Route path="/addReview/:foodId" element={<ProtectedRoute> <AddReview/></ProtectedRoute>}/>
+      
 
     </Routes>
 

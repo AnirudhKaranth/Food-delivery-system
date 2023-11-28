@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
 import { useAppContext } from '../context/appContext';
 import { useNavigate } from 'react-router-dom'
+import FileBase64 from 'react-file-base64'
 
 const AddFoodItem = () => {
   const [Category, setCategory] = useState("")
- const [name, setName] = useState("")
- const [description, setDescription] = useState("")
- const [price, setPrice] = useState("")
+  const [name, setName] = useState("")
+  const [description, setDescription] = useState("")
+  const [price, setPrice] = useState("")
+  const [photo, setPhoto] = useState("")
 
   const navigate = useNavigate()
 
-  const {addFoodItem, user, getAllFoodByCreaterId} = useAppContext();
+  const { addFoodItem, user, getAllFoodByCreaterId } = useAppContext();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const category = Category.split(" ")
     let foodItem = {
-    name,
-    description,
-    price,
-    category,
+      name,
+      description,
+      price,
+      category,
+      photo
     }
 
-    if(addFoodItem(foodItem)){
+    if (addFoodItem(foodItem)) {
       getAllFoodByCreaterId(user?._id)
       navigate(`/home/${user?._id}`)
-    }else{
+    } else {
       alert("addfood failed")
     }
   };
@@ -43,7 +46,7 @@ const AddFoodItem = () => {
             id="name"
             name="name"
             value={name}
-            onChange={(e)=> setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md"
             required
           />
@@ -57,10 +60,16 @@ const AddFoodItem = () => {
             id="description"
             name="description"
             value={description}
-            onChange={(e)=>setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md"
             required
           />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="photo" className="block text-sm mb-2 font-medium text-gray-600">
+            Image
+          </label>
+          <FileBase64 type='file' id="photo" multiple={false} onDone={({ base64 }) => setPhoto(base64)} />
         </div>
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-600">
@@ -71,7 +80,7 @@ const AddFoodItem = () => {
             id="Category"
             name="Category"
             value={Category}
-            onChange={(e)=> setCategory(e.target.value)}
+            onChange={(e) => setCategory(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md"
             required
           />
@@ -85,12 +94,12 @@ const AddFoodItem = () => {
             id="price"
             name="price"
             value={price}
-            onChange={(e)=> setPrice(e.target.value)}
+            onChange={(e) => setPrice(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md"
             required
           />
         </div>
-        
+
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"

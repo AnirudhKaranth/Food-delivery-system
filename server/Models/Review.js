@@ -40,13 +40,6 @@ const Review = sequelize.define('Review', {
             key: 'id'
         },
         allowNull:true
-    },
-    Rid:{
-        type: DataTypes.UUID,
-        references:{
-            model: Restaurant,
-            key:'id'
-        }
     }
      
   }, {

@@ -13,9 +13,9 @@ const RestaurantItem = ({ item }) => {
   }
   return (
     <>
-      <div className="bg-white shadow-md rounded-lg pb-2 max-w-sm border-2 border-gray-300" style={{ "width": "300px" }} onClick={handleClick}>
+      <div className="bg-white shadow-sm hover:shadow-lg cursor-pointer rounded-lg pb-2 max-w-sm border-2 border-gray-300" style={{ "width": "300px" }} onClick={handleClick}>
         <div style={{ "height":"50%"}}>
-          <img src={item?.name === "ideal cafe" ? idealcafe : vegeenation} alt="logo" className='rounded-t-lg' style={{ "height": "100%","width":"100%" }} />
+          <img src={item?.photo} alt="logo" className='rounded-t-lg' style={{ "height": "100%","width":"100%" }} />
         </div>
         <div className='p-4'>
 

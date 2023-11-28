@@ -45,7 +45,7 @@ const User = sequelize.define('User', {
   
     
   useBcrypt(User, {
-    field: 'Upassword', 
+    field: 'password', 
     rounds: 12, 
     compare: 'authenticate',
   });

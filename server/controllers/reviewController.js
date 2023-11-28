@@ -3,7 +3,7 @@ import User from "../Models/User.js";
 
 export const addReview = async (req, res, next) => {
     const { userId, userName } = req.user 
-    let { description, rating, foodId, Rid } = req.body
+    let { description, rating, foodId } = req.body
     rating= Number(rating)
     try {
 
@@ -18,12 +18,23 @@ export const addReview = async (req, res, next) => {
             rating,
             Uid: userId,
             Fid: foodId,
-            Rid,
             userName
         })
 
         res.status(201).json({
             review
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const getReviewsbyFoodId = async(req, res, next)=>{
+    const {foodId} = req.params
+    try {
+        const reviews = await Review.findAll({where:{Fid: foodId}})
+        res.status(200).json({
+            reviews
         })
     } catch (error) {
         next(error)
