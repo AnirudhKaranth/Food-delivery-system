@@ -329,6 +329,71 @@ const AppProvider = ({ children }) => {
         }
     }
 
+    const createOrder = async(orderData) =>{
+        try {
+            
+            const response = await authFetch.post("/order/createorder", {orderData},{
+                headers: {
+                    'Authorization': `Bearer ${state.token}`
+                }
+            })
+
+            // const {order} = response?.data
+            const{msg} = response?.data
+            console.log(msg)
+            return true
+
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+    }
+
+    const getMyOrders = async(id)=>{
+        try {
+            const response = await authFetch.get(`/order/getmyorders/${id}`)
+            const {orders} = response?.data
+            dispatch({
+                type:"GET_ORDER_BY_USERID",
+                payload:{orders}
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const getResOrders = async(id)=>{
+        try {
+            const response = await authFetch.get(`/order/getResOrders/${id}`)
+            const {orders} = response?.data
+            dispatch({
+                type:"GET_ORDER_BY_USERID",
+                payload:{orders}
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const updateStatus = async(id)=>{
+        try {
+            const response = await authFetch.patch(`/order/updateorderstatus/${id}`,{"hello":"hello"},{
+                headers: {
+                    'Authorization': `Bearer ${state.token}`
+                }
+            })
+
+            const {orders} = response?.data
+            dispatch({
+                type:"GET_ORDER_BY_USERID",
+                payload:{orders}
+            })
+
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+    }
+
     return (
         <AppContext.Provider value={{
              ...state, 
@@ -348,6 +413,10 @@ const AppProvider = ({ children }) => {
              addToCart,
              getCartById,
              removeFromCart,
+             createOrder,
+             getMyOrders,
+             getResOrders,
+             updateStatus,
              }}
              >
             {children}

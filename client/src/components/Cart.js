@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import '../pages/RseDetail.css'
 
 const Cart = () => {
-  const { cart, getCartById, removeFromCart } = useAppContext()
+  const { cart, getCartById, removeFromCart, createOrder } = useAppContext()
   const { userId } = useParams()
   const [isOrder, setisOrder] = useState(false)
   const [isDisabled, setisDisabled] = useState(false)
@@ -16,6 +16,12 @@ const Cart = () => {
   const handleremove = (id) => {
     removeFromCart(id)
 
+  }
+  let total = 0
+  if(cart?.length !== 0 ){
+    cart?.map((item)=>{
+      total+=item?.Food.price
+    })
   }
 
   const handleOrder = (e) => {
@@ -27,11 +33,13 @@ const Cart = () => {
         userId: item?.Uid,
         Rid: item?.Food?.Rid,
         address,
-        phone
+        phone,
+        total
       }
     })
 
-    console.log(cartItems)
+    createOrder(cartItems)
+
     setisOrder(false)
     // setisDisabled(false)
     alert("order placed successfully!")
@@ -82,6 +90,9 @@ const Cart = () => {
             <label className='' style={{ "width": "80%" }}>
               <input type="text" name="phone" value={phone} onChange={(e)=>setphone(e.target.value)} className='h-10 border-2 border-gray-100 w-full p-2' placeholder='Enter your number' />
             </label>
+            <div  style={{ "width": "80%" }}>
+              <p>Total cost: Rs {total}</p>
+            </div>
             <div style={{ "width": "80%" }} className='flex items-center justify-center my-2'>
               <button type="submit" className="bg-green-500 text-white px-4 py-2 mx-2 rounded-md hover:bg-green-600">Submit</button>
             </div>

@@ -56,7 +56,8 @@ const Navbar = () => {
             </div>
 
             {isClicked && <div className='absolute right-1 top-16 flex flex-col rounded-lg  border-2 border-gray-300 shadow-md z-30' style={{ "backgroundColor": "#fbf6f6" }}>
-                <Link to={`/userProfile/${user?._id}`} className='p-2 hover:bg-gray-300 rounded-t-lg'>Your Profile</Link>
+            {user.role==="customer" && <Link to={`/myorders/${user?.id}`} className='p-2 hover:bg-gray-300 rounded-t-lg'>My Orders</Link>}
+            {user.role==="owner " && <Link to={`/orders/${user?.id}`} className='p-2 hover:bg-gray-300 rounded-t-lg'>Orders</Link>}
                 <div className="line"></div>
                 <Link to='/delete-account' className='p-2 hover:bg-gray-300' >Delete Account</Link>
                 <div className="line"></div>

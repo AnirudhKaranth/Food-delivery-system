@@ -1,15 +1,20 @@
 import Cart from "../Models/Cart.js"
 import Food from "../Models/Food.js"
 import Order from "../Models/Order.js"
+import User from "../Models/User.js"
 
 
 
 export const createOrder = async(req, res, next)=>{
     const {userId} = req.user
-    const {foodId, Rid, address, phone} = req.body
+    const {orderData} = req.body
+    
     try {
-        const order = await Order.create({Fid:foodId, Rid, Uid:userId, address, phone})
-        res.status(201).json({order})
+        orderData.map(async (item)=>{
+            await Order.create({Fid:item?.foodId, Rid:item?.Rid, Uid:userId, address:item?.address, phone:item?.phone})
+
+        })
+        res.status(201).json({msg:"order placed"})
     } catch (error) {
         next(error)
     }
@@ -31,15 +36,81 @@ try {
     
         order.status = "done"
         await order.save()
+
+        const orders = await Order.findAll({
+          where:{Rid:userId},
+          include: [
+              {
+                model: Food, 
+                attributes: ['name', 'price','photo'],
+                
+              },
+              {
+                  model: User, 
+                attributes: ['name'], 
+              }
+            ],
+      })
     
         res.status(200).json({
-            msg: "updated successfully"
+           orders
         })
 } catch (error) {
     next(error)
 }
 
 }
+
+export const getMyOrders =  async(req, res, next)=>{
+   try {
+     const {userId} = req.params
+ 
+     const orders = await Order.findAll({
+        where:{Uid:userId},
+        include: [
+            {
+              model: Food, 
+              attributes: ['name', 'price','photo'],
+              
+            },
+            {
+                model: User, 
+              attributes: ['name'], 
+            }
+          ],
+
+    })
+     res.status(200).json({orders})
+   } catch (error) {
+    next(error)
+   }
+}
+
+export const getRestaurantOrders =  async(req, res, next)=>{
+   try {
+     const {Rid} = req.params
+ 
+     const orders = await Order.findAll({
+        where:{Rid},
+        include: [
+            {
+              model: Food, 
+              attributes: ['name', 'price','photo'],
+              
+            },
+            {
+                model: User, 
+              attributes: ['name'], 
+            }
+          ],
+    })
+     res.status(200).json({orders})
+   } catch (error) {
+    next(error)
+   }
+}
+
+
 
 export const addToCart = async(req, res, next)=>{
     const { userId } = req.user

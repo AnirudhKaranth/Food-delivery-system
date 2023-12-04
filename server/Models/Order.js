@@ -51,4 +51,7 @@ const Order = sequelize.define('Order', {
    
 })
 
+Order.belongsTo(Food, { foreignKey: 'Fid' });
+Order.belongsTo(User, { foreignKey: 'Uid' });
+
 export default Order
