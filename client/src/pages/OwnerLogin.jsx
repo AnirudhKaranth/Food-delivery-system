@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../context/appContext'
 import { Link, useNavigate } from 'react-router-dom'
 import FileBase64 from 'react-file-base64'
-
+import loginImg from '../assets/rsbg.jpg'
 const OwnerLogin = () => {
   const { loginOwner, signupOwner, user } = useAppContext()
   const [name, setName] = useState("")
@@ -54,10 +54,10 @@ const OwnerLogin = () => {
   }, [user, navigate])
 
   return (
-    <div className='flex w-full h-screen items-center justify-center'>
-      <div className="bg-gray-100 p-4 rounded-lg w-80 mx-auto " >
+    <div className='flex w-full h-screen items-center justify-center'  style={{backgroundImage: `url(${loginImg})`, backgroundSize: 'cover'}}>
+      <div className="bg-slate-800 border border-slate-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative" >
         <form onSubmit={handleSubmit} className="space-y-4 flex flex-col justify-start gap-2 " style={{ "height": "90%" }}>
-          <h3 className="text-2xl font-bold text-center my-9">{isSignUp ? "Sign Up" : "Login"}</h3>
+          <h3 className="text-3xl font-bold text-center my-9 text-white">{isSignUp ? "Sign Up" : "Login"}</h3>
 
           {isSignUp && (
             <label htmlFor="name" className="block">
@@ -65,10 +65,10 @@ const OwnerLogin = () => {
                 type="text"
                 name="name"
                 id="name"
-                placeholder="Enter the restaurant name"
+                placeholder="Restaurant name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                className="block w-72 py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 "
               />
             </label>
           )}
@@ -78,10 +78,10 @@ const OwnerLogin = () => {
               type="email"
               name="email"
               id="email"
-              placeholder="Enter your email"
+              placeholder="Email ID"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="block w-72 py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 "
             />
           </label>
 
@@ -92,10 +92,10 @@ const OwnerLogin = () => {
                   type="text"
                   name="phone"
                   id="phone"
-                  placeholder="Enter your phone number"
+                  placeholder="Phone Number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  className="block w-72 py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 "
                 />
               </label>
               <label htmlFor="location" className="block">
@@ -103,10 +103,10 @@ const OwnerLogin = () => {
                   type="text"
                   name="location"
                   id="location"
-                  placeholder="Enter your location"
+                  placeholder="Location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  className="block w-72 py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 "
                 />
               </label>
               
@@ -118,10 +118,10 @@ const OwnerLogin = () => {
                   type="text"
                   name="description"
                   id="description"
-                  placeholder="Enter the description"
+                  placeholder="Description"
                   value={description}
                   onChange={(e) => setdescription(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  className="block w-72 py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 "
                 />
               </label>
 
@@ -133,10 +133,10 @@ const OwnerLogin = () => {
                   type="text"
                   name="category"
                   id="category"
-                  placeholder="Enter the categories "
+                  placeholder="Category"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  className="block w-72 py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 "
                 />
               </label>
 
@@ -149,10 +149,10 @@ const OwnerLogin = () => {
               type="password"
               name="password"
               id="password"
-              placeholder="Enter your password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="block w-72 py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:text-white focus:border-blue-600 "
               autoComplete="current-password"
             />
           </label>
@@ -163,7 +163,7 @@ const OwnerLogin = () => {
             </button>
           </div>
 
-          <div className="text-center">
+          <div className="text-center text-white">
             <p>
               {isSignUp ? "Already have an account? " : "Need an account? "}
               <span onClick={() => setIsSignUp(!isSignUp)} className='cursor-pointer text-blue-500 hover:text-blue-600'>{isSignUp ? "login" : "signup"}</span>
