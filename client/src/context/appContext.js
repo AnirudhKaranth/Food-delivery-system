@@ -15,7 +15,9 @@ const initialState = {
     restaurantDetails:{},
     reviews:[],
     foodItemDetail:{},
-    restaurants:[]
+    restaurants:[],
+    cart:[],
+    orders:[]
 };
 
 const AppContext = createContext()
@@ -233,11 +235,11 @@ const AppProvider = ({ children }) => {
         try {
             const response = await authFetch.get(`/restaurant/getRestaurantDetails/${id}`)
 
-            const {foodItems, reviews, restaurant} = response?.data
+            const {foodItems, restaurant} = response?.data
 
             dispatch({
                 type:"GET_RESTAURANT_DETAILS",
-                payload:{foodItems, reviews, restaurant}
+                payload:{foodItems, restaurant}
             })
         } catch (error) {
             console.log(error)
@@ -264,12 +266,64 @@ const AppProvider = ({ children }) => {
 
     const getReviewsById = async(foodId)=>{
         try {
-            const response = await authFetch.get(`/getreviews/${foodId}`)
+            const response = await authFetch.get(`/review/getreviews/${foodId}`)
             const {reviews} = response?.data
             dispatch({
                 type:"GET_REVIEW_BY_FOOD_ID",
                 payload:{reviews}
             })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const addToCart = async(foodId) =>{
+        try {
+            const response = await authFetch.post("/order/addtocart", {foodId},{
+                headers: {
+                    'Authorization': `Bearer ${state.token}`
+                }
+            })
+
+            const {cart} = response?.data
+            alert("added to cart successfully!")
+            return true
+
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+    }
+
+    const getCartById = async(id)=>{
+        try {
+            const response = await authFetch.get(`order/getcartbyid/${id}`)
+            const {cart} = response?.data
+
+            dispatch({
+                type:"GET_CART_BY_USER",
+                payload:{cart}
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const removeFromCart = async(id)=>{
+        try {
+            const response = await authFetch.delete(`order/removefromcart/${id}`,{
+                headers: {
+                    'Authorization': `Bearer ${state.token}`
+                }
+            })
+            const {cart} = response?.data
+
+            dispatch({
+                type:"GET_CART_BY_USER",
+                payload:{cart}
+            })
+
+            alert("Removed from cart successfully")
         } catch (error) {
             console.log(error)
         }
@@ -290,7 +344,10 @@ const AppProvider = ({ children }) => {
              getALLRestaurants,
              getRestaurantDetails,
              addReview,
-             getReviewsById
+             getReviewsById,
+             addToCart,
+             getCartById,
+             removeFromCart,
              }}
              >
             {children}

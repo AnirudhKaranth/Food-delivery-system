@@ -92,7 +92,6 @@ export const getRestaurantDetails = async (req, res, next) => {
 
         const restaurant = await Restaurant.findOne({ where: { id:Rid } })
         const foodItems = await Food.findAll({where:{Rid:Rid}})
-        const reviews = await Review.findAll({where:{Rid:Rid, Fid:null}})
 
 
         if (!restaurant) {
@@ -104,7 +103,7 @@ export const getRestaurantDetails = async (req, res, next) => {
         res.status(200).json({
             restaurant,
             foodItems,
-            reviews
+            
         })
     } catch (error) {
         next(error)

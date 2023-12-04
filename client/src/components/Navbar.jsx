@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaSearch } from "react-icons/fa";
 import { GrAdd } from "react-icons/gr";
+import { FaShoppingCart } from "react-icons/fa";
 import { useAppContext } from '../context/appContext'
 import logo from '../assets/logopng.png'
 
@@ -40,6 +41,7 @@ const Navbar = () => {
 
 
             {user.role==="owner " && <Link to='/addFood' className='p-3  sm:inline-block'><GrAdd fontSize={25} /></Link>}
+            {user.role==="customer" && <Link to={`/cart/${user?.id}`} className='p-3  sm:inline-block'><FaShoppingCart fontSize={25} /></Link>}
 
             <div onClick={toggleProfile} className='p-3 cursor-pointer'>
                 {user?.photo && user?.photo?.length !== 0 ?

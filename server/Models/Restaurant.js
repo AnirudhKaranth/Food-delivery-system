@@ -18,7 +18,7 @@ const Restaurant = sequelize.define('Restaurant', {
       validate: {
         is: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
       },
-      unique: true
+     
     },
     password:{
       type: DataTypes.STRING,
