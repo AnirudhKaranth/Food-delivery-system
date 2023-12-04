@@ -5,16 +5,17 @@ import { useParams } from 'react-router-dom'
 import idealcafe from '../assets/ideal-cafe.jpg'
 import vegeenation from '../assets/Vegeenation1.jpg'
 import FoodItemCard from '../components/FoodItemCard'
+import './RseDetail.css'
 
 const RestaurantDetails = () => {
 
-  const { restaurantDetails, reviews, foodItems, getRestaurantDetails } = useAppContext()
+  const { restaurantDetails, foodItems, getRestaurantDetails } = useAppContext()
   const { restaurantId } = useParams()
 
 
   useEffect(() => {
     getRestaurantDetails(restaurantId)
-  }, [restaurantDetails, reviews, foodItems, restaurantId, getRestaurantDetails])
+  }, [])
 
   return (
     <>
@@ -36,7 +37,7 @@ const RestaurantDetails = () => {
 
         </div>
 
-        <div style={{ "height": "0.5px", "background": "gray", "width": "100%" }}></div>
+        <div className='one text-white'>.</div>
         <div className='flex flex-col items-center justify-start w-full p-3 m-3'>
           <div>
             <h2 className='text-4xl font-semibold'>Menu</h2>
@@ -54,26 +55,7 @@ const RestaurantDetails = () => {
               </div>
             )}
           </div>
-        </div>
-
-        <div style={{ "height": "0.5px", "background": "gray", "width": "100%" }}></div>
-
-        <div className='flex flex-col items-center justify-start w-full p-3 m-3'>
-          <div>
-            <h2 className='text-4xl font-semibold'>Reviews</h2>
-          </div>
-          <div className='w-full'>
-              {reviews.length !==0 ?(
-                <div>
-
-                </div>
-              ):(
-              <div>
-               No reviews yet 
-              </div>
-              )}
-          </div>
-        </div>
+        </div>       
 
 
       </div>

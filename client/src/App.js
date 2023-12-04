@@ -9,6 +9,9 @@ import AddFoodItem from "./components/AddFoodItem.jsx";
 import FoodDetail from "./components/FoodDetail.jsx";
 import RestaurantDetails from "./pages/RestaurantDetails.jsx";
 import AddReview from "./pages/AddReview.jsx";
+import Cart from "./components/Cart.js";
+import MyOrders from "./pages/MyOrders.jsx";
+import Orders from "./pages/Orders.jsx";
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
       <Route path="/auth-user" element={<UserLogin/>}/>
       <Route path="/auth-owner" element={<OwnerLogin/>}/>
       <Route path="/addReview/:foodId" element={<ProtectedRoute> <AddReview/></ProtectedRoute>}/>
+      <Route path="/cart/:userId" element={<ProtectedRoute> <Cart/></ProtectedRoute>}/>
+      <Route path="/myorders/:userId" element={<ProtectedRoute> <MyOrders/></ProtectedRoute>}/>
+      <Route path="/orders/:Rid" element={<ProtectedRoute> <Orders/></ProtectedRoute>}/>
       
 
     </Routes>

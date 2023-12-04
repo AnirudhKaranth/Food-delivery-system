@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs'
 
 
 const createJWT = (user) => {
-    return jwt.sign({ userId: user.Uid, userName: user.name , role:user.role}, process.env.JWT_SECRET , { expiresIn: process.env.JWT_LIFETIME })
+    return jwt.sign({ userId: user.id, userName: user.name , role:user.role}, process.env.JWT_SECRET , { expiresIn: process.env.JWT_LIFETIME })
 }
 export const signUp = async (req, res, next) => {
     try {
@@ -28,6 +28,7 @@ export const signUp = async (req, res, next) => {
         const user = await User.create({ name, email, password });
 
         // Create a unique token for each user (required for frontend authorization)
+        console.log(user)
         const token = createJWT(user);
         user.dataValues.password = null
 

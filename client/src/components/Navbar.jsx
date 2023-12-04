@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaSearch } from "react-icons/fa";
 import { GrAdd } from "react-icons/gr";
+import { FaShoppingCart } from "react-icons/fa";
 import { useAppContext } from '../context/appContext'
 import logo from '../assets/logopng.png'
 
@@ -40,6 +41,7 @@ const Navbar = () => {
 
 
             {user.role==="owner " && <Link to='/addFood' className='p-3  sm:inline-block'><GrAdd fontSize={25} /></Link>}
+            {user.role==="customer" && <Link to={`/cart/${user?.id}`} className='p-3  sm:inline-block'><FaShoppingCart fontSize={25} /></Link>}
 
             <div onClick={toggleProfile} className='p-3 cursor-pointer'>
                 {user?.photo && user?.photo?.length !== 0 ?
@@ -54,7 +56,8 @@ const Navbar = () => {
             </div>
 
             {isClicked && <div className='absolute right-1 top-16 flex flex-col rounded-lg  border-2 border-gray-300 shadow-md z-30' style={{ "backgroundColor": "#fbf6f6" }}>
-                <Link to={`/userProfile/${user?._id}`} className='p-2 hover:bg-gray-300 rounded-t-lg'>Your Profile</Link>
+            {user.role==="customer" && <Link to={`/myorders/${user?.id}`} className='p-2 hover:bg-gray-300 rounded-t-lg'>My Orders</Link>}
+            {user.role==="owner " && <Link to={`/orders/${user?.id}`} className='p-2 hover:bg-gray-300 rounded-t-lg'>Orders</Link>}
                 <div className="line"></div>
                 <Link to='/delete-account' className='p-2 hover:bg-gray-300' >Delete Account</Link>
                 <div className="line"></div>

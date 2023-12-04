@@ -61,6 +61,16 @@ const reducer = (state, action) => {
           ...state,
           reviews: action.payload.reviews
         }
+      case "GET_CART_BY_USER":
+        return{
+          ...state,
+          cart: action.payload.cart
+        }
+        case "GET_ORDER_BY_USERID":
+          return {
+            ...state,
+            orders: action.payload.orders
+          }
     default:
       return state; // Return the current state for unsupported actions
   }

@@ -26,8 +26,8 @@ const AddFoodItem = () => {
     }
 
     if (addFoodItem(foodItem)) {
-      getAllFoodByCreaterId(user?._id)
-      navigate(`/home/${user?._id}`)
+      getAllFoodByCreaterId(user?.id)
+      navigate(`/home/${user?.id}`)
     } else {
       alert("addfood failed")
     }

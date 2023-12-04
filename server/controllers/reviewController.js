@@ -5,9 +5,10 @@ export const addReview = async (req, res, next) => {
     const { userId, userName } = req.user 
     let { description, rating, foodId } = req.body
     rating= Number(rating)
+    console.log(userName)
     try {
 
-        const user = User.findOne({where:{Uid:userId}})
+        const user = User.findOne({where:{id:userId}})
         if(!user){
         return res.status(400).json({msg:"Unathourized user"})
         }
