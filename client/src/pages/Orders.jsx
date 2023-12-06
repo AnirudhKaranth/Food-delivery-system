@@ -22,7 +22,7 @@ const Orders = () => {
      <div className='h-screen w-full flex items-start justify-center'>
         <div className='border-2 border-gray-100 rounded-md shadow-sm mt-1' style={{ "width": "50%", "height": "85%" }}>
           <div className='w-full flex items-center justify-center text-5xl my-3 font-semibold'>
-            My Orders
+          Orders
           </div>
           <div className='one text-white'>.</div>
           {orders?.length !== 0 ?

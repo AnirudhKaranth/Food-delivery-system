@@ -55,7 +55,7 @@ const OwnerLogin = () => {
 
   return (
     <div className='flex w-full h-screen items-center justify-center'>
-      <div className="bg-gray-100 p-4 rounded-lg w-80 mx-auto " >
+      <div className="bg-gray-100 p-4 rounded-lg  mx-auto  w-80" >
         <form onSubmit={handleSubmit} className="space-y-4 flex flex-col justify-start gap-2 " style={{ "height": "90%" }}>
           <h3 className="text-2xl font-bold text-center my-9">{isSignUp ? "Sign Up" : "Login"}</h3>
 
@@ -73,7 +73,7 @@ const OwnerLogin = () => {
             </label>
           )}
 
-          <label htmlFor="email" className="block">
+          <label htmlFor="email" className="block w-70">
             <input
               type="email"
               name="email"

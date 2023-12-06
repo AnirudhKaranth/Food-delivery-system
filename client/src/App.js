@@ -12,12 +12,14 @@ import AddReview from "./pages/AddReview.jsx";
 import Cart from "./components/Cart.js";
 import MyOrders from "./pages/MyOrders.jsx";
 import Orders from "./pages/Orders.jsx";
+import About from "./pages/About.jsx";
 
 function App() {
   return (
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Landing/>}/>
+      <Route path="/about" element={<About/>}/>
       <Route path="/home" element={<ProtectedRoute> <Home/></ProtectedRoute> }/>
       <Route path="/home/:ownerId" element={<ProtectedRoute> <HomeOwner/></ProtectedRoute> }/>
       <Route path="/addFood/" element={<ProtectedRoute> <AddFoodItem/></ProtectedRoute> }/>
