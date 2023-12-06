@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../context/appContext'
 import { Link, useNavigate } from 'react-router-dom'
+import loginImg from '../assets/rsbg.jpg'
 
 const UserLogin = () => {
 const {login, signUp, user} = useAppContext()
@@ -40,10 +41,10 @@ const {login, signUp, user} = useAppContext()
 }, [user, navigate])
 
   return (
-    <div className='flex w-full h-screen items-center justify-center'>
-    <div className="bg-gray-100 p-4 rounded-lg w-80 mx-auto " >
+    <div className='flex w-full h-screen items-center justify-center'  style={{backgroundImage: `url(${loginImg})`, backgroundSize: 'cover'}}>
+    <div className="bg-slate-800 border border-slate-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative" >
     <form onSubmit={handleSubmit} className="space-y-4 flex flex-col justify-start gap-2 " style={{"height":"90%"}}>
-      <h3 className="text-2xl font-bold text-center my-9">{isSignUp ? "Sign Up" : "Login"}</h3>
+      <h3 className="text-2xl font-bold text-center text-white my-9">{isSignUp ? "Sign Up" : "Login"}</h3>
       
       {isSignUp && (
         <label htmlFor="name" className="block">
