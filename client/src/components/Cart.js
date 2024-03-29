@@ -53,7 +53,7 @@ const Cart = () => {
     <>
       <Navbar />
       <div className='h-screen w-full flex items-start justify-center'>
-        <div className='border-2 border-gray-100 rounded-md shadow-sm mt-1' style={{ "width": "30%", "height": "85%" }}>
+        <div className='border-2 border-gray-200 rounded-md shadow-sm mt-1' style={{ "width": "30%", "height": "85%" }}>
           <div className='w-full flex items-center justify-center text-5xl my-3 font-semibold'>
             My Cart
           </div>

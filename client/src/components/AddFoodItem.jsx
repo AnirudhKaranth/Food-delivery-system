@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAppContext } from '../context/appContext';
 import { useNavigate } from 'react-router-dom'
 import FileBase64 from 'react-file-base64'
+import Navbar from './Navbar';
 
 const AddFoodItem = () => {
   const [Category, setCategory] = useState("")
@@ -34,6 +35,8 @@ const AddFoodItem = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">Add Food Item</h2>
       <form onSubmit={handleSubmit}>
@@ -63,7 +66,7 @@ const AddFoodItem = () => {
             onChange={(e) => setDescription(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md"
             required
-          />
+            />
         </div>
         <div className="mb-4">
           <label htmlFor="photo" className="block text-sm mb-2 font-medium text-gray-600">
@@ -97,17 +100,18 @@ const AddFoodItem = () => {
             onChange={(e) => setPrice(e.target.value)}
             className="mt-1 p-2 w-full border rounded-md"
             required
-          />
+            />
         </div>
 
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Add Food Item
+          >
+          Add
         </button>
       </form>
     </div>
+          </>
   );
 };
 

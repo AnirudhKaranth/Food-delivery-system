@@ -32,6 +32,8 @@ const Navbar = () => {
             <Link to={user.role === 'owner' ? `/home/${user?._id}` : "/home"}>
                 <img src={logo} alt="logo" width={100} />
             </Link>
+          <Link to='/about' className='p-3  sm:inline-block font-semibold'>About</Link>
+
             <form className='w-3/5 h-12 rounded-3xl border-2 border-gray-200 flex justify-start pl-1' onSubmit={handleSearch} style={{ "backgroundColor": "#efefef" }}>
                 <button type='submit' className='p-1'><FaSearch fontSize={25} /></button>
                 <label className='w-full h-full'>
@@ -59,8 +61,7 @@ const Navbar = () => {
             {user.role==="customer" && <Link to={`/myorders/${user?.id}`} className='p-2 hover:bg-gray-300 rounded-t-lg'>My Orders</Link>}
             {user.role==="owner " && <Link to={`/orders/${user?.id}`} className='p-2 hover:bg-gray-300 rounded-t-lg'>Orders</Link>}
                 <div className="line"></div>
-                <Link to='/delete-account' className='p-2 hover:bg-gray-300' >Delete Account</Link>
-                <div className="line"></div>
+                
                 <button type='button' className='p-2 hover:bg-gray-300 rounded-b-lg' onClick={logoutUser}>Logout</button>
             </div>}
         </div>
