@@ -9,7 +9,7 @@ const Landing = () => {
       <nav className="mt-4">
         <span href="#" className="text-gray-300 mx-2 hover:text-white">Home</span>
         <span href="#" className="text-gray-300 mx-2 hover:text-white">Menu</span>
-        <span href="#" className="text-gray-300 mx-2 hover:text-white">About Us</span>
+        <Link to="/about" className='text-gray-300 mx-2 hover:text-white'>About us</Link>
         <span href="#" className="text-gray-300 mx-2 hover:text-white">Contact</span>
       </nav>
     </header>
