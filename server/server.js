@@ -28,7 +28,7 @@ const sendSMS = async()=>{
     var req = unirest("GET", "https://www.fast2sms.com/dev/bulkV2");
 
 req.query({
-  "authorization": "TohBMzO2CkISy4nAvmEaXw0tgPHYV7LqQleK169cxf35NdubDZCfxnJ3oUHG17AmpEcOX8hvl90IVPRt",
+  "authorization": "",
   "message": "This is a test message",
   "language": "english",
   "route": "q",
